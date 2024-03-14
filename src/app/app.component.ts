@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  
-import { HttpClientModule } from '@angular/common/http';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, NavBarComponent, FooterComponent, RouterOutlet, NgxMaterialTimepickerModule, ReactiveFormsModule,
-             HttpClientModule, FormsModule, NgMultiSelectDropDownModule],
+             HttpClientModule, FormsModule, NgMultiSelectDropDownModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

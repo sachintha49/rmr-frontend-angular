@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -13,8 +13,6 @@ import { Restaurant } from '../model/restaurant';
 import { HttpClientModule } from '@angular/common/http';
 import { Cuisine } from '../model/cuisine';
 import { Facility } from '../model/facility';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-register-restaurant',
@@ -29,15 +27,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     ReactiveFormsModule,
     AsyncPipe,
     MatSelectModule,
-    HttpClientModule,
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        RouterModule,
-        CommonModule,
-        RouterOutlet
+    HttpClientModule
   ],
   templateUrl: './register-restaurant.component.html',
   styleUrl: './register-restaurant.component.css',
