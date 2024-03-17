@@ -1,5 +1,9 @@
 export class Restaurant {
     id!: number;
+    firstName!: string;
+    lastName!: string;
+    userName!: string;
+    password!: string;
     name!: string;
     description!: string;
     address!: string;

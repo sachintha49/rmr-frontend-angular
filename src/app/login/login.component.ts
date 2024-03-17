@@ -56,6 +56,7 @@ export class LoginComponent {
        setTimeout(() => {
          this.router.navigate(["/home"]);
        }, 400);
+       localStorage.setItem("admin","admin");
        this.LoggedUserService.updateButtonClickedState('admin'); 
      }
  
@@ -70,8 +71,24 @@ export class LoginComponent {
        setTimeout(() => {
          this.router.navigate(["/home"]);
        }, 400);
+       localStorage.setItem("user","user");
        this.LoggedUserService.updateButtonClickedState("user");
      } 
+
+     if(user.username == "system" && user.password == "system"){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "You have successfully logged in!",
+        showConfirmButton: false,
+        timer: 2000
+      });
+      setTimeout(() => {
+        this.router.navigate(["/home"]);
+      }, 400);
+      localStorage.setItem("system","system");
+      this.LoggedUserService.updateButtonClickedState("system");
+    } 
 
     /*   console.log(user)
       this.loginService.login(user)

@@ -21,7 +21,7 @@ export class RestaurantService {
   /* Save Restaurant */
   public addRestaurant(restaurant: Restaurant) {
     console.log(restaurant);
-    return this.http.post<Restaurant>('http://localhost:8080/restaurants/add', restaurant, httpOptions);
+    return this.http.post<Restaurant>('http://localhost:8080/restaurants/create', restaurant, httpOptions);
   };
 
   public getCuisines() {

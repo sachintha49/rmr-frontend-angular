@@ -27,7 +27,7 @@ import { Facility } from '../model/facility';
     ReactiveFormsModule,
     AsyncPipe,
     MatSelectModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   templateUrl: './register-restaurant.component.html',
   styleUrl: './register-restaurant.component.css',
@@ -45,6 +45,10 @@ export class RegisterRestaurantComponent {
   }
 
   restaurantForm: FormGroup = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    userName: new FormControl(''),
+    password: new FormControl(''),
     name: new FormControl(''),
     description: new FormControl(''),
     address: new FormControl(''),
@@ -63,6 +67,10 @@ export class RegisterRestaurantComponent {
 
   onSaveRestaurant() {
     const restaurant: Restaurant = new Restaurant();
+    restaurant.firstName = this.restaurantForm.value.firstName;
+    restaurant.lastName = this.restaurantForm.value.lastName;
+    restaurant.userName = this.restaurantForm.value.userName;
+    restaurant.password = this.restaurantForm.value.password;
     restaurant.name = this.restaurantForm.value.name;
     restaurant.description = this.restaurantForm.value.description;
     restaurant.address = this.restaurantForm.value.address;
@@ -75,7 +83,6 @@ export class RegisterRestaurantComponent {
     restaurant.phone = this.restaurantForm.value.mobileNumber;
     restaurant.email = this.restaurantForm.value.email;
     restaurant.website = this.restaurantForm.value.webSiteUrl;
-
     this.restaurantService.addRestaurant(restaurant)
       .subscribe(data => {
         alert("Restaurant has been saved successfully!");

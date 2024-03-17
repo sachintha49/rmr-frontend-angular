@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { heroes } from '../../data/homeitems';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -11,4 +12,5 @@ import { CommonModule } from '@angular/common';
 })
 export class HomePageComponent {
   heroes = heroes;
+
 }

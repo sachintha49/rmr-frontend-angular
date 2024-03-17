@@ -11,8 +11,16 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, FooterComponent, RouterOutlet, NgxMaterialTimepickerModule, ReactiveFormsModule,
-             HttpClientModule, FormsModule, NgMultiSelectDropDownModule, CommonModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgMultiSelectDropDownModule,
+    NgxMaterialTimepickerModule,
+    CommonModule,
+    RouterOutlet,
+    FooterComponent,
+    NavBarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
