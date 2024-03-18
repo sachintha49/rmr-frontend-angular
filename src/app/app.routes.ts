@@ -6,9 +6,11 @@ import { DetailPageComponent } from './detail-page/detail-page.component';
 import { LoginComponent } from './login/login.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ManageRestMenuItemComponent } from './manage-rest-menu-item/manage-rest-menu-item.component';
 
 export const routes: Routes = [
     {'path': '', title: 'Dashboard', component:DashboardComponent},
+    {'path': 'manage-menu-item/:id', title: 'Manage Menu Item', component:ManageRestMenuItemComponent},
     {'path': 'home', title: 'Home', component:HomePageComponent},
     {'path': 'add-restaurant', title: 'Restaurant Registration', component:RegisterRestaurantComponent},
     {'path': 'detail-page', title: 'Detail Page', component:DetailPageComponent},

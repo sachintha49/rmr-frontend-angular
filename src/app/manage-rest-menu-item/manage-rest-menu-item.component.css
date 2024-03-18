@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .fixed-button {
+    position: relative;
+    top: 0;
+    right: 0; /* Position at the top right corner */
+    z-index: 1;
+    padding: 7px;
+  }
+  

@@ -1,0 +1,60 @@
+<form [formGroup]="menuItemForm">
+    <h2 mat-dialog-title>Add Menu Items to My Restaurant</h2>
+    <mat-dialog-content style="width: 600px;">
+        <h3>Develop across all platforms</h3>
+
+        <mat-form-field class="w-full">
+            <mat-label>Select an option</mat-label>
+            <mat-select formControlName="manuItem" class="w-full">
+                @for (menuItem of menuItems; track menuItem) {
+                <mat-option [value]="menuItem">{{menuItem.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Large Price -->
+        <div class="sm:col-span-4">
+            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Large Price</label>
+            <div class="mt-2">
+                <div
+                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+                    <input formControlName="largePrice" type="text" name="largePrice" id="largePrice"
+                        autocomplete="largePrice" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 
+              placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Large Price">
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Price -->
+        <div class="sm:col-span-4">
+            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Medium Price</label>
+            <div class="mt-2">
+                <div
+                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+                    <input formControlName="mediumPrice" type="text" name="mediumPrice" id="mediumPrice"
+                        autocomplete="mediumPrice" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 
+              placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Medium Price">
+                </div>
+            </div>
+        </div>
+
+        <!-- Small Price -->
+        <div class="sm:col-span-4">
+            <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Small Price</label>
+            <div class="mt-2">
+                <div
+                    class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset sm:max-w-md">
+                    <input formControlName="smallPrice" type="text" name="smallPrice" id="smallPrice"
+                        autocomplete="smallPrice" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 
+              placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Small Price">
+                </div>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close color="warn">Cancel</button>
+        <button mat-button mat-dialog-close [mat-dialog-close]="true" color="primary" cdkFocusInitial
+            (click)="addMenuItem()">Add</button>
+    </mat-dialog-actions>
+</form>

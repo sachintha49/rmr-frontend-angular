@@ -1,4 +1,4 @@
-<nav *ngIf="userType == 'admin' || userType == 'user' || userType == 'system'" class="bg-gray-800">
+<nav class="bg-gray-800"><!-- *ngIf="userType == 'admin' || userType == 'user' || userType == 'system'" -->
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex">
@@ -34,8 +34,8 @@
             <div *ngIf="showDropdownMenuItem" x-show="open"
               class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg origin-top-right divide-y divide-gray-100 focus:outline-none"
               role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add Menu Items</a>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">View Menu Items</a>
+              <a [routerLink]="['/manage-menu-item/',9]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add Menu Items</a>
+              <a [routerLink]="['/manage-menu-item/',2]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">View Menu Items</a>
             </div>
           </div>
 
