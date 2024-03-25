@@ -1,18 +1,19 @@
 import { AsyncPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
-import { RestaurantService } from '../service/restaurant.service';
-import { Restaurant } from '../model/restaurant';
-import { HttpClientModule } from '@angular/common/http';
 import { Cuisine } from '../model/cuisine';
 import { Facility } from '../model/facility';
+import { Restaurant } from '../model/restaurant';
+import { RestaurantService } from '../service/restaurant.service';
 
 @Component({
   selector: 'app-register-restaurant',
@@ -63,7 +64,7 @@ export class RegisterRestaurantComponent {
     webSiteUrl: new FormControl('')
   })
 
-  constructor(private restaurantService: RestaurantService) { }
+  constructor(private restaurantService: RestaurantService, private router: Router) { }
 
   onSaveRestaurant() {
     const restaurant: Restaurant = new Restaurant();
@@ -83,10 +84,13 @@ export class RegisterRestaurantComponent {
     restaurant.phone = this.restaurantForm.value.mobileNumber;
     restaurant.email = this.restaurantForm.value.email;
     restaurant.website = this.restaurantForm.value.webSiteUrl;
+    
     this.restaurantService.addRestaurant(restaurant)
       .subscribe(data => {
         alert("Restaurant has been saved successfully!");
         console.log("response", data);
+        localStorage.setItem('loggedRestAdminId', data.id.toString());
+        this.router.navigate(["/"]);
       })
   }
 

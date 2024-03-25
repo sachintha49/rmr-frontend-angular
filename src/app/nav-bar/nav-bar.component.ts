@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LoggedUserService } from '../service/logged-user.service';
+import { DOCUMENT } from '@angular/common';
+import { UserDetailService } from '../service/user-detail.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,53 +13,47 @@ import { LoggedUserService } from '../service/logged-user.service';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
-export class NavBarComponent implements OnDestroy {
-  subscription: Subscription;
-  userType: string | undefined = "";
+export class NavBarComponent implements OnInit {
+  username: string | undefined;
+  role: string | undefined;
+  restaurantId: string | undefined;
 
-
-  constructor(private loggedUserService: LoggedUserService, private router: Router) {
-    this.subscription = this.loggedUserService.buttonClicked$.subscribe((clicked) => {
-      this.userType = clicked;
-      console.log(clicked);
-    });
+  constructor(private loggedUserService: LoggedUserService, private router: Router, private userService : UserDetailService) {
+   
   }
 
-  isEvenNumber(): string {
-    if (this.userType == "admin") {
-      return "RES_ADMIN";
-    }
-    if (this.userType == "user") {
-      return "USER";
-    }
-    if (this.userType == "system") {
-      return "USER";
-    }
-    return "";
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
   /* Profile drop down functions */
   showDropdown: boolean = false;
   showDropdownMenuItem: boolean = false;
   showDropdownCuisine: boolean = false;
-  username: string = "Username";
 
   ngOnInit(): void {
+    this.userService.getUsername().subscribe(username => {
+      this.username = username;
+      console.log(this.username);
+    });
+
+    this.userService.getRole().subscribe(role => {
+      this.role = role ?? 'NONE';
+      console.log(this.role);
+    });
+
+    this.userService.getRestaurantId().subscribe(id => {
+      this.restaurantId = id;
+      console.log(this.restaurantId);
+    });
   }
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
-  toggleDropdownMenuItem(){
+  toggleDropdownMenuItem() {
     this.showDropdownMenuItem = !this.showDropdownMenuItem;
-  } 
+  }
 
   signOffSystem(): void {
-    this.loggedUserService.updateButtonClickedState('');
+    this.userService.clearUserDetails();
     this.router.navigate(["/login"]);
   }
 }

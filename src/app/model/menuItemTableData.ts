@@ -1,6 +1,6 @@
 export interface TableElement {
-    column1: string;
-    column2: string;
-    column3: string;
-    column4: string;
+    menuItem: string;
+    largePrice: string;
+    mediumPrice: string;
+    smallPrice: string;
   }

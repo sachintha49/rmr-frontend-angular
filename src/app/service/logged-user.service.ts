@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { UserLogin } from '../model/UserLogin';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoggedUserService {
 
   constructor() {}
 
-  updateButtonClickedState(state: string): void {
-    this.buttonClickedSubject.next(state);
+  updateButtonClickedState(userDetail: any): void {
+    this.buttonClickedSubject.next(userDetail);
   }
 }

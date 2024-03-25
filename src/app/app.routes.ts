@@ -12,6 +12,7 @@ export const routes: Routes = [
     {'path': '', title: 'Dashboard', component:DashboardComponent},
     {'path': 'manage-menu-item/:id', title: 'Manage Menu Item', component:ManageRestMenuItemComponent},
     {'path': 'home', title: 'Home', component:HomePageComponent},
+    /* add restaurant with restaurant admin details */
     {'path': 'add-restaurant', title: 'Restaurant Registration', component:RegisterRestaurantComponent},
     {'path': 'detail-page', title: 'Detail Page', component:DetailPageComponent},
     {'path': 'login', title: 'Login', component:LoginComponent},
