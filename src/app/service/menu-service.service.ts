@@ -28,4 +28,8 @@ export class MenuServiceService {
   public getMenuItemsAccordingToRestaurantId(restaurantId: number) {
     return this.http.get<RestaurantMenuItem[]>('http://localhost:8080/menus/' + restaurantId);
   };
+
+  public getTheMenuItem(menuItemId: number) {
+    return this.http.get<RestaurantMenuItem>('http://localhost:8080/menus/item/' + menuItemId);
+  };
 }
