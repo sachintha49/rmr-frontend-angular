@@ -7,6 +7,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FooterComponent } from './footer/footer.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +22,14 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     CommonModule,
     RouterOutlet,
     FooterComponent,
-    NavBarComponent],
+    NavBarComponent,
+    FontAwesomeModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'meal-recommendation-frontend';
-
+  faCoffee = faCoffee;
   constructor() {}
 
 }
