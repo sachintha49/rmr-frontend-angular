@@ -1,32 +1,18 @@
 <section class="text-gray-600 body-font">
   <div class="container px-6 py-2 mx-auto">
     <div class="flex flex-wrap -m-4">
-      <div *ngFor="let hero of heroes; let i = index" class="lg:w-1/5 md:w-1/2 p-5 w-full pointer-class">
-        <a class="block relative h-60 rounded overflow-hidden">
-          <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="\assets\photos\burger.png">
-        </a>
-        <div class="mt-4">
-          <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{hero.name}}</h3>
-          <span class="flex items-center">
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-            </svg>
-            <span class="text-gray-600 ml-3">4 Reviews</span>
-          </span>
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <p class="mt-1">$16.00</p>
+      <div *ngFor="let restaurant of restaurants; let i = index" class="lg:w-1/5 md:w-1/2 p-5 w-ful">
+        <div class="pointer-class" (click)="moveRestaurantPage(restaurant.id)">
+          <a class="block relative h-60 rounded overflow-hidden">
+            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="\assets\photos\restaurant.jpg">
+          </a>
+          <div class="mt-4">
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{restaurant.address}}</h3>
+            <!-- star rating -->
+            <app-star-rating [readonly]="false" [rating]="2"></app-star-rating>
+            <h2 class="text-gray-900 title-font text-lg font-medium">{{restaurant.name}}</h2>
+            <p class="mt-1">{{restaurant.priceRange}}</p>
+          </div>
         </div>
       </div>  
     </div>

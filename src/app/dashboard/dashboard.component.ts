@@ -16,12 +16,12 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     // Check if localStorage value is null
-    if (typeof sessionStorage !== 'undefined') {
+   /*  if (typeof sessionStorage !== 'undefined') {
       if (!localStorage.getItem('user') || !localStorage.getItem('admin') || !localStorage.getItem('system')) {
         // Navigate to the login page
         this.router.navigate(['/login']);
       }
-    }
+    } */
   }
 
 }

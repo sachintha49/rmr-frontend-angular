@@ -1,4 +1,5 @@
-<nav class="bg-gray-800"><!-- *ngIf="userType == 'admin' || userType == 'user' || userType == 'system'" -->
+<nav *ngIf="role != ''" class="bg-gray-800">
+  <!-- *ngIf="userType == 'admin' || userType == 'user' || userType == 'system'" -->
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <div class="flex">
@@ -9,36 +10,26 @@
         <div class="hidden space-x-4 sm:-my-px sm:ml-10 sm:flex">
 
           <!-- Login -->
-          <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="#"
+          <a *ngIf="role !== 'REST_ADMIN'" routerLink="/login" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}"
             class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</a>
 
           <!-- Create Restaurant -->
-          <a routerLink="/add-restaurant" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="#"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Create Restaurant</a>
+          <a *ngIf="role !== 'REST_ADMIN'" routerLink="/add-restaurant" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Create
+            Restaurant</a>
 
-            <!-- Register User -->
-          <a routerLink="/register-user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register User</a>
+          <!-- Register User -->
+          <a *ngIf="role !== 'REST_ADMIN'" routerLink="/register-user" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" href="#"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register
+            User</a>
 
-           <!-- Menu Items Dropdown ------------------------------------------------>
-           <div class="relative" x-data="{ open: false }">
-            <button (click)="toggleDropdownMenuItem()"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium focus:outline-none">
-              Menu Item
-              <!-- Dropdown arrow icon -->
-              <svg class="h-5 w-5 inline-block ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div *ngIf="showDropdownMenuItem" x-show="open"
-              class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg origin-top-right divide-y divide-gray-100 focus:outline-none"
-              role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-              <a [routerLink]="['/manage-menu-item/',9]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Add Menu Items</a>
-              <a [routerLink]="['/manage-menu-item/',2]" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">View Menu Items</a>
-            </div>
-          </div>
-
+            <!-- Add Menu Item -->
+          <a *ngIf="role == 'REST_ADMIN'" [routerLink]="['/manage-menu-item/',restaurantId]" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" href="#"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Add Menu Item</a>
         </div>
 
       </div>
@@ -74,7 +65,8 @@
               <div class="py-1">
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                <a (click)="signOffSystem()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                <a (click)="signOffSystem()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                  out</a>
               </div>
             </div>
           </div>

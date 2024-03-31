@@ -1,0 +1,23 @@
+#container {
+    fa-icon {
+        color: rgb(244, 243, 239);
+        font-size: 24px;
+        cursor: pointer;
+
+        &.rated {
+            color: gold;
+        }
+
+        transition: color 0.3s ease-in-out;
+    }
+}
+
+&.readOnly {
+    fa-icon {
+        cursor: default;
+
+        &:hover:not(.rated)~fa-ican {
+            color: gray;
+        }
+    }
+}

@@ -32,4 +32,11 @@ export class RestaurantService {
     return this.http.get<Facility[]>('http://localhost:8080/facilities');
   };
 
+  public getRestaurants() {
+    return this.http.get<Restaurant[]>('http://localhost:8080/restaurants');
+  };
+
+  public getRestaurantById(id : number) {
+    return this.http.get<Restaurant>('http://localhost:8080/restaurants/' + id);
+  };
 }
