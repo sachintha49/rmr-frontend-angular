@@ -1,0 +1,10 @@
+.menu-item{
+    font-size: 14px;
+    color: cornflowerblue;
+    font-weight: bold;
+}
+
+.menu-item:hover{
+    font-size: 16px;
+    color: gold;
+}

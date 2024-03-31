@@ -24,12 +24,27 @@
 
         <h3 class="leading-relaxed" style="margin-top: 10px;"><b>Website</b> : {{restaurant.website}}</h3>
 
-        <!-- TODO -->
-        <h3 class="leading-relaxed" style="margin-top: 10px;"><b>Owner Name</b> : Sachintha</h3>
+        <h3 class="leading-relaxed" style="margin-top: 10px;"><b>Owner Name</b> : {{restOwner}}</h3>
+
+        <h3 class="leading-relaxed" style="margin-top: 10px;"><b>Facilities</b> </h3>
+        <ul>
+          <li *ngFor="let facility of restaurant.facilities">{{ facility.name }}</li>
+        </ul>
 
 
       </div>
     </div>
+  </div>
+</section>
+
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="lg:w-4/5 mx-auto flex flex-wrap">
+    <ul>
+      <li><b>Menu Items</b></li>
+      <li *ngFor="let menuItem of menuItemsList">
+        <a (click)="navigateMenuItem(menuItem.id)" style="cursor: pointer;" class="menu-item">{{ menuItem.menuItem.name }}</a>
+      </li>
+    </ul>
   </div>
 </section>
 
