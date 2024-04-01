@@ -8,6 +8,7 @@ export class MenuItem {
   description! : string;
   restaurantId! : number;
   menuId! : number;
+  menu!: Menu;
   smallPrice! : number;
   mediumPrice! : number;
   largePrice! : number;

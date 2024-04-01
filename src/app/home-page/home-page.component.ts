@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { heroes } from '../../data/homeitems';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RestaurantMenuItem } from '../model/menu-item';
-import { MenuServiceService } from '../service/menu-service.service';
-import { TableElement } from '../model/menuItemTableData';
-import { MatTableDataSource } from '@angular/material/table';
-import { RestaurantService } from '../service/restaurant.service';
+import { heroes } from '../../data/homeitems';
 import { Restaurant } from '../model/restaurant';
+import { RestaurantService } from '../service/restaurant.service';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 
 @Component({
@@ -34,7 +30,6 @@ export class HomePageComponent implements OnInit{
   }
 
   moveRestaurantPage(restId : number) {
-    console.log("click una" + restId);
     this.router.navigate(['/detail-page/', restId]);
   }
 

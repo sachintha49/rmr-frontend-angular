@@ -26,7 +26,7 @@ import { UserDetailService } from '../service/user-detail.service';
 export class LoginComponent {
 
   constructor(private loginService: LoginService, private router: Router,
-    private LoggedUserService: LoggedUserService, private userDetail : UserDetailService) { }
+    private LoggedUserService: LoggedUserService, private userDetail: UserDetailService) { }
 
   userLogin: FormGroup = new FormGroup({
     password: new FormControl(''),
@@ -38,14 +38,14 @@ export class LoginComponent {
     userLogin.username = this.userLogin.value.username;
     userLogin.password = this.userLogin.value.password;
     console.log(userLogin)
-    
+
     this.loginService.login(userLogin)
       .subscribe(data => {
-  /*       alert("User logged in successfully!");
+        alert("User logged in successfully!");
         localStorage.clear();
         localStorage.setItem('username', data.username)
         localStorage.setItem('restaurantId', data.restaurantId)
-        localStorage.setItem('role', data.role) */
+        localStorage.setItem('role', data.role)
         // this.LoggedUserService.updateButtonClickedState(data);
         this.userDetail.setRole(data.role);
         this.userDetail.setRestaurantId(data.restaurantId);

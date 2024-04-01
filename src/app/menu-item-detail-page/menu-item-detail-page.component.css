@@ -1,0 +1,12 @@
+.restaurantCSS {
+    :hover{
+        text-decoration: underline;
+        color: rgb(76, 76, 103);
+        cursor: pointer;
+    }
+}
+
+.gray-button {
+    background-color: #ccc; /* Gray color */
+    color: #fff; /* Text color */
+  }
