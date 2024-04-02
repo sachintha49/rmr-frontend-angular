@@ -9,11 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { RecommendationService } from '../service/recommendation.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-menu-item-detail-page',
   standalone: true,
-  imports: [StarRatingComponent, CommonModule, MatChipsModule, MatButtonModule, MatIconModule, MatDividerModule],
+  imports: [StarRatingComponent, CommonModule, MatChipsModule, MatButtonModule, MatIconModule, MatDividerModule, FormsModule,
+  ReactiveFormsModule],
   templateUrl: './menu-item-detail-page.component.html',
   styleUrl: './menu-item-detail-page.component.css'
 })
@@ -22,6 +24,10 @@ export class MenuItemDetailPageComponent implements OnInit {
   RestMenuItem!: RestaurantMenuItem;
   dislikeDisabled: boolean = false;
   likeDisabled: boolean = false;
+
+  commentForm: FormGroup = new FormGroup({
+    comment: new FormControl('')
+  })
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -72,6 +78,32 @@ export class MenuItemDetailPageComponent implements OnInit {
         // this.RestMenuItem = data;
         this.getRestaurantMenuItem();
         console.log(data);
+      });
+  }
+
+  onRatingChange(value : number){
+    const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    const username: string | null = localStorage.getItem("username");
+    const usernameString: string = username ? username.toString() : '';
+    this.recommendService.rateMenuItem(menuItemId, value, usernameString)
+      .subscribe(data => {
+        // this.RestMenuItem = data;
+        this.getRestaurantMenuItem();
+        console.log(data);
+      });
+  }
+
+  sendComment() {
+    let newComment = this.commentForm.value.comment;
+    
+    const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    const username: string | null = localStorage.getItem("username");
+    const usernameString: string = username ? username.toString() : '';
+    this.recommendService.reviewMenuItem(menuItemId, newComment, usernameString)
+      .subscribe(data => {
+        // this.RestMenuItem = data;
+        this.getRestaurantMenuItem();
+        this.commentForm.get('comment')?.reset('');
       });
   }
 
