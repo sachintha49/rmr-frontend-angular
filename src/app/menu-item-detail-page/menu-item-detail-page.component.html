@@ -8,7 +8,7 @@
             '' }}</b></h1>
 
         <!-- star rating -->
-        <app-star-rating [rating]="3" (ratingChange)="onRatingChange($event)" [readonly]="false"></app-star-rating>
+        <app-star-rating [rating]="ratingUser" (ratingChange)="onRatingChange($event)" [readonly]="false"></app-star-rating>
 
         <h3 class="leading-relaxed " style="margin-top: 10px;"><b>Cuisine</b> : {{ RestMenuItem ?
           RestMenuItem.menuItem.menu.name : '' }}</h3>
@@ -82,7 +82,7 @@
 <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
   <div class="max-w-2xl mx-auto px-4">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion (20)</h2>
+      <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion {{menuItemCommentList.length}}</h2>
     </div>
 
     <!-- post comment -->
@@ -100,20 +100,17 @@
     </form>
 
     <!-- comment -->
-    <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900">
+    <article class="p-6 text-base bg-white rounded-lg dark:bg-gray-900" *ngFor="let comment of menuItemCommentList">
       <footer class="flex justify-between items-center mb-2">
         <div class="flex items-center">
           <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"><img
               class="mr-2 w-6 h-6 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-              alt="Michael Gough">Michael Gough</p>
+              alt="Michael Gough">{{comment.user.firstName}}</p>
           <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
-              title=" February 8th, 2022"> Feb. 8, 2022</time></p>
+              title=" February 8th, 2022">{{comment.date}}</time></p>
         </div>
       </footer>
-      <p class="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really worth time reading. Thank you!
-        But tools are just the
-        instruments for the UX designers. The knowledge of the design tools are as important as the
-        creation of the design strategy.</p>
+      <p class="text-gray-500 dark:text-gray-400">{{comment.text}}</p>
     </article>
   </div>
 </section>

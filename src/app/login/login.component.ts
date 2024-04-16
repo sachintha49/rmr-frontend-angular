@@ -46,11 +46,13 @@ export class LoginComponent {
         localStorage.setItem('username', data.username)
         localStorage.setItem('restaurantId', data.restaurantId)
         localStorage.setItem('role', data.role)
-        // this.LoggedUserService.updateButtonClickedState(data);
-        this.userDetail.setRole(data.role);
-        this.userDetail.setRestaurantId(data.restaurantId);
-        this.userDetail.setUsername(data.username);
-        this.router.navigate(["/home"]);
+
+        console.log(localStorage)
+        if (data.role == "REST_ADMIN") {
+          this.router.navigate(['/manage-menu-item/', data.restaurantId]);
+        } else {
+          this.router.navigate(["/home"]);
+        }
       })
   }
 }

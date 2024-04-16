@@ -23,8 +23,7 @@ export class DetailPageComponent implements OnInit {
   faCoffee = faCoffee;
   restOwner: string = "";
   menuItemsList: RestaurantMenuItem[] = [];
-  //comment : Comment = new Comment();
-  //comments : Comment;
+  roundedRateAvg!: number;
 
   constructor(private restaurantService: RestaurantService, private activatedRoute: ActivatedRoute, 
     private menuService: MenuServiceService, private router: Router) { }
@@ -44,6 +43,8 @@ export class DetailPageComponent implements OnInit {
     this.restaurantService.getRestaurantById(restaurantId)
       .subscribe(data => {
         this.restaurant = data;
+        this.roundedRateAvg = Math.round(data.avgMealRate);
+        this.restaurant.avgMealRate = parseFloat(data.avgMealRate.toFixed(2));
         this.restOwner = data.user?.firstName || '';
       });
   }

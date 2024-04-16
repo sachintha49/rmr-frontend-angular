@@ -32,4 +32,8 @@ export class MenuServiceService {
   public getTheMenuItem(menuItemId: number) {
     return this.http.get<RestaurantMenuItem>('http://localhost:8080/menus/item/' + menuItemId);
   };
+
+  public getRestaurantMenuAllItems() {
+    return this.http.get<MenuItem[]>('http://localhost:8080/menus/restaurant/items');
+  };
 }

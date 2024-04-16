@@ -48,6 +48,7 @@ export class DialogContentExampleDialog implements OnInit {
     this.menuService.getMenuAllItems()
       .subscribe(data => {
         this.menuItems = data;
+        console.log(this.menuItems);
       });
   }
 
@@ -60,13 +61,14 @@ export class DialogContentExampleDialog implements OnInit {
     menuItem.mediumPrice = this.menuItemForm.value.mediumPrice;
     menuItem.largePrice = this.menuItemForm.value.largePrice;
 
+    console.log(menuItem)
     this.menuService.addMenuItem(menuItem)
       .subscribe(data => {
         alert("Menu Item has been saved successfully!");
         console.log("response", data);
+        this.menuItemAdded.emit();
       })
 
-    this.menuItemAdded.emit();
   }
 }
 

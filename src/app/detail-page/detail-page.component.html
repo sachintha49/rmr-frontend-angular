@@ -6,8 +6,8 @@
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h1 class="text-sm title-font text-gray-500 tracking-widest"><b>Name : {{restaurant.name}}</b></h1>
         <!-- star rating -->
-        <app-star-rating (ratingChange)="onRatingChange($event)" [readonly]="false"></app-star-rating>
-
+          <app-star-rating [rating]="roundedRateAvg" (ratingChange)="onRatingChange($event)" [readonly]="false"></app-star-rating>
+        <h5>{{restaurant.avgMealRate}}</h5>
         <h3 class="leading-relaxed " style="margin-top: 10px;"><b>Address</b> : {{restaurant.address}}</h3>
 
         <h3 class="leading-relaxed" style="margin-top: 10px;"><b>Description</b> : {{restaurant.description}}</h3>

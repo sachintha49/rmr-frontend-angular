@@ -9,9 +9,34 @@
           <div class="mt-4">
             <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{restaurant.address}}</h3>
             <!-- star rating -->
-            <app-star-rating [readonly]="false" [rating]="2"></app-star-rating>
+            <app-star-rating [readonly]="false" [rating]="restaurant.avgMealRate"></app-star-rating>
             <h2 class="text-gray-900 title-font text-lg font-medium">{{restaurant.name}}</h2>
-            <p class="mt-1">{{restaurant.priceRange}}</p>
+            <!-- <p class="mt-1">{{restaurant.priceRange}}</p> -->
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>
+
+
+<section class="text-gray-600 body-font">
+  <div class="container px-6 py-2 mx-auto">
+    <div class="flex flex-wrap -m-4">
+      <div *ngFor="let menuItem of menuItems; let i = index" class="lg:w-1/5 md:w-1/2 p-5 w-ful">
+        <div class="pointer-class" (click)="moveRestaurantPage(menuItem.menuItemId)">
+          <a class="block relative h-60 rounded overflow-hidden">
+            <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="\assets\photos\burger.png">
+          </a>
+          <div class="mt-4">
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1 pointer-class"
+            (click)="moveMenuItemPage(menuItem.id)">{{menuItem.menuItem.name}}</h3>
+            <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{menuItem.menuItem.menu.description}}</h3>
+            <!-- star rating -->
+            <app-star-rating [readonly]="true" [rating]="menuItem.averageFinal"></app-star-rating>
+            <h2 class="text-gray-900 title-font text-lg font-medium pointer-class"
+            (click)="moveRestaurantPage(menuItem.restaurant.id)">{{menuItem.restaurant.name}}</h2>
+            <!-- <p class="mt-1">{{restaurant.priceRange}}</p> -->
           </div>
         </div>
       </div>  

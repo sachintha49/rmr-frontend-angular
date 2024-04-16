@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
 })
 export class UserRegistrationComponent {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   userRegistration: FormGroup = new FormGroup({
     firstName: new FormControl(''),
@@ -44,6 +44,7 @@ export class UserRegistrationComponent {
     this.userService.createUser(user)
         .subscribe( data => {
           alert("User created successfully.");
+          this.router.navigate(["/home"]);
         });
   }
 

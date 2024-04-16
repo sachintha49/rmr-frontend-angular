@@ -10,20 +10,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { RecommendationService } from '../service/recommendation.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Rating } from '../model/raring';
+import { MenuItemComment } from '../model/menuItemComment';
 
 @Component({
   selector: 'app-menu-item-detail-page',
   standalone: true,
   imports: [StarRatingComponent, CommonModule, MatChipsModule, MatButtonModule, MatIconModule, MatDividerModule, FormsModule,
-  ReactiveFormsModule],
+    ReactiveFormsModule],
   templateUrl: './menu-item-detail-page.component.html',
   styleUrl: './menu-item-detail-page.component.css'
 })
 export class MenuItemDetailPageComponent implements OnInit {
 
   RestMenuItem!: RestaurantMenuItem;
+  ratingUser!: number;
   dislikeDisabled: boolean = false;
   likeDisabled: boolean = false;
+  menuItemCommentList: MenuItemComment[] = [];
 
   commentForm: FormGroup = new FormGroup({
     comment: new FormControl('')
@@ -32,6 +36,9 @@ export class MenuItemDetailPageComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 0);
     this.getRestaurantMenuItem();
+    this.getRatingAccordingToUser();
+    this.getRecommendationAccordingToUser();
+    this.getAllReviewCommentsAccordingToMenuItem();
   }
 
   constructor(private activatedRoute: ActivatedRoute, private menuService: MenuServiceService, private router: Router
@@ -42,7 +49,6 @@ export class MenuItemDetailPageComponent implements OnInit {
     this.menuService.getTheMenuItem(menuItemId)
       .subscribe(data => {
         this.RestMenuItem = data;
-        console.log(this.RestMenuItem);
       });
   }
 
@@ -62,6 +68,7 @@ export class MenuItemDetailPageComponent implements OnInit {
         // this.RestMenuItem = data;
         this.getRestaurantMenuItem();
         console.log(data);
+        this.getRecommendationAccordingToUser();
       });
   }
 
@@ -78,10 +85,32 @@ export class MenuItemDetailPageComponent implements OnInit {
         // this.RestMenuItem = data;
         this.getRestaurantMenuItem();
         console.log(data);
+        this.getRecommendationAccordingToUser();
       });
   }
 
-  onRatingChange(value : number){
+  /* Get Rating According to the user */
+  getRecommendationAccordingToUser() {
+    const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    const username: string | null = localStorage.getItem("username");
+    const usernameString: string = username ? username.toString() : '';
+    this.recommendService.getRecommendMenuItem(menuItemId, usernameString)
+      .subscribe(data => {
+        if (data && data.recommend != null) {
+          if (data.recommend == true) {
+            this.dislikeDisabled = true;
+            this.likeDisabled = false;
+          }
+
+          if (data.recommend == false) {
+            this.dislikeDisabled = false;
+            this.likeDisabled = true;
+          }
+        }
+      });
+  }
+
+  onRatingChange(value: number) {
     const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
     const username: string | null = localStorage.getItem("username");
     const usernameString: string = username ? username.toString() : '';
@@ -89,13 +118,24 @@ export class MenuItemDetailPageComponent implements OnInit {
       .subscribe(data => {
         // this.RestMenuItem = data;
         this.getRestaurantMenuItem();
-        console.log(data);
+        this.getRatingAccordingToUser();
+      });
+  }
+
+  /* Get Rating According to the user */
+  getRatingAccordingToUser() {
+    const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    const username: string | null = localStorage.getItem("username");
+    const usernameString: string = username ? username.toString() : '';
+    this.recommendService.getUserRateMenuItem(menuItemId, usernameString)
+      .subscribe(data => {
+        this.ratingUser = data.rate;
       });
   }
 
   sendComment() {
     let newComment = this.commentForm.value.comment;
-    
+
     const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
     const username: string | null = localStorage.getItem("username");
     const usernameString: string = username ? username.toString() : '';
@@ -104,6 +144,17 @@ export class MenuItemDetailPageComponent implements OnInit {
         // this.RestMenuItem = data;
         this.getRestaurantMenuItem();
         this.commentForm.get('comment')?.reset('');
+        this.getAllReviewCommentsAccordingToMenuItem();
+      });
+  }
+
+  /* Get all review comments According to the menu item */
+  getAllReviewCommentsAccordingToMenuItem() {
+    const menuItemId = parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
+    this.recommendService.getAllReviewCommentsAccordingToMenuItem(menuItemId)
+      .subscribe(data => {
+        this.menuItemCommentList = data;
+        console.log(this.menuItemCommentList)
       });
   }
 

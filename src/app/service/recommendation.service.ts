@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Rating } from '../model/raring';
+import { MenuItemComment } from '../model/menuItemComment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -31,5 +33,25 @@ export class RecommendationService {
   public reviewMenuItem(menuItemId: number, review: String, username: string) {
     const url = `http://localhost:8080/review/${menuItemId}?username=${username}`;
     return this.http.post(url, review, httpOptions);
+  }
+
+
+
+  /* get rate according to the user */
+  public getUserRateMenuItem(menuItemId: number,username: string){
+    const url = `http://localhost:8080/rate/${menuItemId}?username=${username}`;
+    return this.http.get<Rating>(url, httpOptions);
+  }
+
+  /* get rate according to the user */
+  public getRecommendMenuItem(menuItemId: number,username: string){
+    const url = `http://localhost:8080/recommend/${menuItemId}?username=${username}`;
+    return this.http.get<Rating>(url, httpOptions);
+  }
+
+  /* get all review comments according to the menu item */
+  public getAllReviewCommentsAccordingToMenuItem(menuItemId: number){
+    const url = `http://localhost:8080/review/${menuItemId}`;
+    return this.http.get<MenuItemComment[]>(url, httpOptions);
   }
 }

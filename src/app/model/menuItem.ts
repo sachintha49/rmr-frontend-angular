@@ -12,5 +12,5 @@ export class MenuItem {
   smallPrice! : number;
   mediumPrice! : number;
   largePrice! : number;
-
+  averageFinal! : number;
 }

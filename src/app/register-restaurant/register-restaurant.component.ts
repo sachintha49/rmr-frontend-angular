@@ -90,7 +90,7 @@ export class RegisterRestaurantComponent {
         alert("Restaurant has been saved successfully!");
         console.log("response", data);
         localStorage.setItem('loggedRestAdminId', data.id.toString());
-        this.router.navigate(["/"]);
+        this.router.navigate(["/home"]);
       })
   }
 
