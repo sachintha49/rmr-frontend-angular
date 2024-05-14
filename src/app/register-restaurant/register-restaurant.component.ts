@@ -14,6 +14,7 @@ import { Cuisine } from '../model/cuisine';
 import { Facility } from '../model/facility';
 import { Restaurant } from '../model/restaurant';
 import { RestaurantService } from '../service/restaurant.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-restaurant',
@@ -87,7 +88,11 @@ export class RegisterRestaurantComponent {
     
     this.restaurantService.addRestaurant(restaurant)
       .subscribe(data => {
-        alert("Restaurant has been saved successfully!");
+        Swal.fire({
+          title: "Restaurant has been registered Successfully!",
+          text: "Welcome to the system",
+          icon: "success"
+        });
         console.log("response", data);
         localStorage.setItem('loggedRestAdminId', data.id.toString());
         this.router.navigate(["/home"]);

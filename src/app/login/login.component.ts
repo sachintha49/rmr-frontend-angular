@@ -41,7 +41,11 @@ export class LoginComponent {
 
     this.loginService.login(userLogin)
       .subscribe(data => {
-        alert("User logged in successfully!");
+        Swal.fire({
+          title: "Logged in Successfully!",
+          text: "Welcome to the system",
+          icon: "success"
+        });
         localStorage.clear();
         localStorage.setItem('username', data.username)
         localStorage.setItem('restaurantId', data.restaurantId)
@@ -53,6 +57,12 @@ export class LoginComponent {
         } else {
           this.router.navigate(["/home"]);
         }
+      },(error) => {
+        Swal.fire({
+          title: error.error.message,
+          text: "Invalid Details! Please enter correct username password",
+          icon: "error"
+        });
       })
   }
 }

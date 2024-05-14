@@ -4,6 +4,7 @@ import { UserService } from '../service/user.service';
 import { User } from '../model/user';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-registration',
@@ -43,7 +44,11 @@ export class UserRegistrationComponent {
     console.log(this.userRegistration.value);
     this.userService.createUser(user)
         .subscribe( data => {
-          alert("User created successfully.");
+          Swal.fire({
+            title: "User has been registered Successfully!",
+            text: "Welcome to the system",
+            icon: "success"
+          });
           this.router.navigate(["/home"]);
         });
   }
